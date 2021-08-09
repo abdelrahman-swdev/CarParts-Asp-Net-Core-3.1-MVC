@@ -1,0 +1,54 @@
+﻿@model CarParts.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "CreateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-primary">
+    أضف معلومات المستخدم
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateUser" asp-controller="Admin" method="post">
+            <div class="form-group">
+                <label class="mb-1" asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="mt-3 mb-1" asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="mt-3 mb-1" asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="mt-3 mb-1" asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="mt-3 mb-1" asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="mt-3 mb-1" asp-for="RoleId"></label>
+                <select class="form-select" asp-for="RoleId" asp-items="@(new SelectList(Model.roles,"Id","Name"))">
+                    <option disabled selected>
+                        اختر الدور
+                    </option>
+                </select>
+                <span asp-validation-for="RoleId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="حفظ" class="btn btn-primary" />
+                <a asp-action="ListUsers" class="btn btn-outline-secondary">الرجوع الى قائمة المستخدمين</a>
+            </div>
+        </form>
+    </div>
+</div>

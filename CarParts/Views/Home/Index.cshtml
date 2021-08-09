@@ -1,0 +1,95 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Product>
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Controller"] = "Home";
+    ViewData["Action"] = "Index";
+}
+
+
+<div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/banner.jpg" class="d-block w-100" alt="...">
+                <div class="text-light carousel-caption d-none d-md-block">
+                    <h3>لو عربيتك رينو يبقا انت جيت في المكان الصح</h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/banner3.jpg" class="d-block w-100" alt="...">
+                <div class="text-light carousel-caption d-none d-md-block">
+                    <h3>دور على جميع قطع غيار عربيات رينو بافضل سعر واحسن جودة</h3>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+</div>
+
+
+<div class="row">
+    @{
+        if (Model.Data.Count() == 0)
+        {
+            <div class="cairo-font-bold items-header col-12 text-center">
+                <p class="text-success">لا يوجد منتجات</p>
+            </div>
+        }
+        else
+        {           
+            <div class="cairo-font-bold items-header col-12 text-center">
+                <p class="text-success">المنتجات الحديثه</p>
+            </div>
+        }
+        foreach (var item in Model.Data)
+        {
+            <div class="card col-lg-3 col-md-6 col-sm-6 mt-4 custom-card">
+                <img src="~/images/@(item.ProductPhotoPath == null ? "No-Image.jpg" : item.ProductPhotoPath)" class="card-img-top image-thumb-search" alt="@item.Name">
+                <div class="card-body">
+                    <div class="title-price-item">
+                        @if (item.Name.Length > 15)
+                        {
+                            var nameLimited = item.Name.Substring(0, 15);
+                            <span class="cairo-font-bold text-primary">
+                                @nameLimited..
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="cairo-font-bold text-primary">
+                                @item.Name
+                            </span>
+                        }
+                        <span class="cairo-font-bold text-success">@item.Price</span>
+                    </div>
+                    <div class="actions-item text-center mt-2">
+                        @if (User.IsInRole("مسؤول"))
+                        {
+                            <a class="btn btn-secondary" asp-action="Edit" asp-controller="Products" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-controller="Products" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                            <a class="btn btn-outline-primary" asp-action="Details" asp-controller="Products" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a>
+                        }
+                        else
+                        {
+
+                            <a class="btn btn-outline-primary" asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">التفاصيل <i class="fas fa-eye"></i></a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+<partial name="_PaginationPartial" model="Model" view-data="ViewData"/>

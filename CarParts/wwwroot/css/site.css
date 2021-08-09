@@ -1,0 +1,178 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
+/*almarai font family*/
+.almarai-font-light{
+    font-family:Almarai;
+    font-weight:300;
+}
+.almarai-font-regular {
+    font-family: Almarai;
+    font-weight: 400;
+}
+.almarai-font-bold {
+    font-family: Almarai;
+    font-weight: 700;
+}
+.almarai-font-xbold {
+    font-family: Almarai;
+    font-weight: 800;
+}
+
+/* cairo font family*/
+.cairo-font-xlight {
+    font-weight: 200;
+}
+.cairo-font-light {
+    font-weight: 300;
+}
+.cairo-font-regular {
+    font-weight: 400;
+}
+
+.cairo-font-smbold {
+    font-weight: 600;
+}
+
+.cairo-font-bold {
+    font-weight: 700;
+}
+.cairo-font-xbold {
+    font-weight: 900;
+}
+*{
+    font-family:Cairo;
+}
+/*nav bar*/
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+/*image*/
+.image-thumb-search {
+    height: 300px;
+    width: auto;
+}
+.image-thumb{
+    width:75%;
+}
+@media only screen and (max-width: 1200px) {
+    img.image-thumb {
+        width: 90%;
+    }
+}
+/*logo image*/
+.logo-img{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #fafafa;
+}
+
+.items-header {
+    margin-top: 30px;
+    font-size: 32px
+}
+.title-price-item{
+    font-size:20px;
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+}
+@media(max-width: 768px) {
+    div .items-header {
+        margin-top: 25px;
+        font-size: 24px
+    }
+}
+
+/* alert*/
+.alert{
+    font-size:20px;
+    font-weight:700;
+}
+/*custom card*/
+@media(max-width: 576px) {
+    div.custom-card {
+        margin:auto;
+        width:75%;
+    }
+}
+
+/* pagination*/
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 40px;
+    margin-top: 30px;
+}
+
+
+
+
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}

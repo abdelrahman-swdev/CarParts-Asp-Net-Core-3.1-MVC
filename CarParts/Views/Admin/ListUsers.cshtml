@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ApplicationUser>
+@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManager
+@{
+    ViewData["Title"] = "ListUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-outline-primary btn-lg mb-2" asp-action="CreateUser">مستخدم جديد <i class="fas fa-plus"></i></a>
+
+@if (Model.Count() == 0)
+{
+
+
+    <div class="alert alert-info">
+        لا يوجد مستخدمين بعد
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        جميع المستخدمين
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-borderless">
+        <thead>
+            <tr class="text-info">
+                <th>الاسم الاول</th>
+                <th>الاسم الثاني</th>
+                <th>البريد الالكتروني</th>
+                <th>الدور</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+
+                <td>
+                    @user.FirstName
+                </td>
+                <td>
+                    @user.LastName
+                </td>
+                <td>
+                    @user.Email
+                </td>
+
+                @{
+                    var role = userManager.GetRolesAsync(user).Result[0];
+                    if (role != null || role != "")
+                    {
+                        <td>
+                            @role
+                        </td> 
+                    }                   
+                }
+
+                <td>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@user.Id"><i class="fas fa-edit"></i></a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@user.Id"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+}
+

@@ -1,0 +1,37 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="alert alert-primary">
+    اضافة دور جديد للمستخدمين
+</div>
+@if (ViewBag.RoleExist != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.RoleExist
+    </div>
+}
+@if (ViewBag.RoleNameRequiredErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.RoleNameRequiredErrorMessage
+    </div>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">الاسم</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="حفظ" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary">الرجوع الى قائمة الادوار</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model CarParts.ViewModels.ProductEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="alert alert-secondary">
+    تعديل معلومات المنتج
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden asp-for="Id" />
+            <input hidden asp-for="ExistingPhoto" />
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control m-1" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control m-1" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberInStock" class="control-label"></label>
+                <input asp-for="NumberInStock" class="form-control m-1" />
+                <span asp-validation-for="NumberInStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control m-1" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ProductPhoto" class="form-label">اضغط هنا لتغيير صورة المنتج</label>
+                <input asp-for="ProductPhoto" class="form-control" type="file" id="formFile">
+            </div>
+            <div>
+                <img src="~/images/@(Model.ExistingPhoto == null || Model.ExistingPhoto == "" ? "No-Image.jpg" : Model.ExistingPhoto)" class="card-img-top imageThumb" alt="@Model.Name">
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="حفظ" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary">الرجوع الى قائمة المنتجات</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

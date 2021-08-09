@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	<TargetFramework>netcoreapp3.1</TargetFramework>
+	<UserSecretsId>aspnet-CarParts-C1D47D48-8950-4E11-90E3-699D243487A3</UserSecretsId>
+	<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<Compile Remove="Data\Migrations\20210724193649_addProductClass.cs" />
+	<Compile Remove="Data\Migrations\20210724193649_addProductClass.Designer.cs" />
+	<Compile Remove="Data\Migrations\20210725231554_AddAppUser.cs" />
+	<Compile Remove="Data\Migrations\20210725231554_AddAppUser.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+	<PackageReference Include="cloudscribe.Web.Pagination" Version="2.1.*" />
+	<PackageReference Include="cloudscribe.Pagination.Models" Version="1.0.*" />
+	<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.12" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.15" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.15" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.12" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

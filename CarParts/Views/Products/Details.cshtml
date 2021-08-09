@@ -1,0 +1,58 @@
+﻿@model CarParts.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+    var imgPath = "~/images/" + (Model.ProductPhotoPath ?? "No-Image");
+}
+
+<div class="alert alert-info">
+     تفاصيل المنتج
+</div>
+<div class="card col-lg-10 col-md-10 col-sm-12 mb-3 border-0">
+    <div>
+        <img src="~/images/@(Model.ProductPhotoPath == null ? "No-Image.jpg" : Model.ProductPhotoPath)" class="card-img-top image-thumb" alt="@Model.Name">
+    </div>
+    <div>
+        <div class="card-body">
+            <div class="title-price-item">
+                <span class="cairo-font-bold text-primary">@Model.Name</span>
+                <span class="cairo-font-bold text-success">@Model.Price</span>
+            </div>
+            <p style="font-size:20px;" class="card-text cairo-font-regular"><span class="text-secondary">الوصف : </span>@Model.Description</p>
+            <p class="card-text">
+                عدد القطع المتاحة :
+
+                @if (Model.NumberInStock <= 5)
+                {
+                    if (User.IsInRole("مسؤول"))
+                    {
+                        <span class="text-danger cairo-font-xbold">
+                            (@Model.NumberInStock)
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-danger cairo-font-xbold">
+                            (@Model.NumberInStock) الحق بسرعه قبل ما يخلصوا
+                        </span>
+                    }
+                }
+                else
+                {
+                    <span class="text-success cairo-font-xbold">
+                        (@Model.NumberInStock)
+                    </span>
+                }
+            </p>
+        </div>
+        @if (User.IsInRole("مسؤول"))
+        {
+            <a class="btn btn-outline-secondary m-1" asp-action="Index">الرجوع الى قائمة المنتجات</a>
+        }
+        else
+        {
+            <a class="btn btn-outline-secondary m-1" asp-action="Index" asp-controller="Home">الرجوع الى قائمة المنتجات</a>
+        }
+    </div>
+
+</div>

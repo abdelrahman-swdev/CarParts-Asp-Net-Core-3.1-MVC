@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CarParts.Models.Product>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+@{
+    if (Model.Count() == 0)
+    {
+        <div class="alert alert-info">
+            لا يوجد منتجات تطابق البحث
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-primary">
+            نتائج البحث
+        </div>
+    }
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="card col-lg-3 col-md-6 col-sm-6 mt-4 custom-card">
+        <img src="~/images/@(item.ProductPhotoPath == null ? "No-Image.jpg" : item.ProductPhotoPath)" class="card-img-top image-thumb-search" alt="@item.Name">
+        <div class="card-body">
+            <div class="title-price-item">
+                <span class="cairo-font-bold text-primary">@item.Name</span>
+                <span class="cairo-font-bold text-success">@item.Price</span>
+            </div>
+        </div>
+        <div class="actions-item text-center mt-2">
+            @if (User.IsInRole("مسؤول"))
+            {
+
+                <a class="btn btn-secondary" asp-action="Edit" asp-controller="Products" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-danger" asp-action="Delete" asp-controller="Products" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                <a class="btn btn-outline-primary" asp-action="Details" asp-controller="Products" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a>
+            }
+            else
+            {
+
+                <a class="btn btn-outline-primary" asp-action="Details" asp-controller="Products" asp-route-id="@item.Id">التفاصيل <i class="fas fa-eye"></i></a>
+            }
+        </div>
+    </div>
+    }
+</div>

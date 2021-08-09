@@ -1,0 +1,52 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Product>
+
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Controller"] = "Products";
+    ViewData["Action"] = "Index";
+}
+
+<a class="btn btn-outline-primary btn-lg mb-2" asp-action="Create">منتج جديد <i class="fas fa-plus"></i></a>
+@{ 
+    if(Model.Data.Count() == 0)
+    {
+        <div class="alert alert-info">
+            لا يوجد منتجات لعرضها
+        </div>
+    }
+
+    
+}
+<div class="row">
+@foreach (var item in Model.Data)
+{ 
+    <div class="card col-lg-3 col-md-6 col-sm-6 mt-4 custom-card">
+        <img src="~/images/@(item.ProductPhotoPath == null ? "No-Image.jpg" : item.ProductPhotoPath)" class="card-img-top image-thumb-search" alt="@item.Name">
+        <div class="card-body">
+            <div class="title-price-item">
+                @if (item.Name.Length > 15)
+                {
+                    var nameLimited = item.Name.Substring(0, 15);
+                    <span class="cairo-font-bold text-primary">
+                        @nameLimited..
+                    </span>
+                }
+                else
+                {
+                    <span class="cairo-font-bold text-primary">
+                        @item.Name
+                    </span>
+                }
+                <span class="cairo-font-bold text-success">@item.Price</span>
+            </div>
+        </div>
+        <div class="actions-item text-center mt-2">
+            <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a>
+            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>                  
+        </div>
+    </div>
+}
+</div>
+
+<partial name="_PaginationPartial" model="Model" view-data="ViewData"/>
